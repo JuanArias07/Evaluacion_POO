@@ -1,19 +1,15 @@
 package infraestructura;
-
 import animal.Paciente;
-
-
 public class Jaula {
     private int numero;
-    private String tamano;
-    private String zona;
-    private String ocupante;
+    private String tamano = "S";
+    private String zona = "A";
+    private Paciente ocupante = null;
 
-    public Jaula(int numero, String tamano, String zona, String ocupante) {
+    public Jaula(int numero, String tamano, String zona) {
         this.numero = numero;
-        this.tamano = tamano;
-        this.zona = zona;
-        this.ocupante = ocupante;
+        setTamano(tamano);
+        setZona(zona);
     }
 
     public int getNumero() {
@@ -21,7 +17,9 @@ public class Jaula {
     }
 
     public void setNumero(int numero) {
-        this.numero = numero;
+        if (numero > 0) {
+            this.numero = numero;
+        }
     }
 
     public String getTamano() {
@@ -29,7 +27,9 @@ public class Jaula {
     }
 
     public void setTamano(String tamano) {
-        this.tamano = tamano;
+        if ("S".equals(tamano) || "M".equals(tamano) || "L".equals(tamano)) {
+            this.tamano = tamano;
+        }
     }
 
     public String getZona() {
@@ -37,14 +37,21 @@ public class Jaula {
     }
 
     public void setZona(String zona) {
-        this.zona = zona;
+        if ("A".equals(zona) || "B".equals(zona)) {
+            this.zona = zona;
+        }
     }
 
-    public String getOcupante() {
+    public Paciente getOcupante() {
         return ocupante;
     }
 
-    public void setOcupante(String ocupante) {
-        this.ocupante = ocupante;
+    public void setOcupante(Paciente ocupante) {
+        this.ocupante = ocupante; // null libera la jaula
+    }
+
+    public boolean estaLibre() {
+        return ocupante == null;
     }
 }
+

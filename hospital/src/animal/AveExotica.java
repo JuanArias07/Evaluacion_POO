@@ -1,12 +1,12 @@
 package animal;
 
-public class AveExotica extends Paciente{
-    private double envergadura;
+public class AveExotica extends Paciente {
+    private double envergadura = 0;
 
-    public AveExotica(String nombre, double peso, int edad,
-                      double envergadura){
-        super(nombre, peso,edad, "",3, 0, null);
-        this.envergadura=envergadura;
+    public AveExotica(String nombre, double peso, int edad, double envergadura) {
+        super(nombre, peso, edad, 3);
+        setEnvergadura(envergadura);
+        setEstado("INGRESADO");
     }
 
     public double getEnvergadura() {
@@ -14,6 +14,10 @@ public class AveExotica extends Paciente{
     }
 
     public void setEnvergadura(double envergadura) {
-        this.envergadura = envergadura;
+        if (envergadura > 0) {
+            this.envergadura = envergadura;
+        }
     }
+}
+
 }
